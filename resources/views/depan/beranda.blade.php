@@ -1,4 +1,4 @@
-@extends('layouts.depan.content')
+@extends('depan.layouts.content')
 
 @section('title', 'Beranda - Prabhakala E-Booking')
 
