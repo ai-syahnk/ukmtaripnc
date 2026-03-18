@@ -13,3 +13,7 @@ Route::get('/beranda', function () {
 Route::get('/login', function () {
     return view('web.login');
 });
+
+Route::get('/register', function () {
+    return view('web.register');
+});
