@@ -113,6 +113,12 @@
             margin-top: 70px;
         }
 
+        .hero-carousel,
+        .hero-carousel .carousel-inner,
+        .hero-carousel .carousel-item {
+            height: 100%;
+        }
+
         .hero-image {
             width: 100%;
             height: 100%;
@@ -127,6 +133,45 @@
             right: 0;
             height: 30%;
             background: linear-gradient(to top, var(--color-primary-dark), transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-carousel .carousel-control-prev,
+        .hero-carousel .carousel-control-next {
+            width: 60px;
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .hero-carousel .carousel-control-prev-icon,
+        .hero-carousel .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 20px;
+            background-size: 50%;
+        }
+
+        .hero-carousel .carousel-control-prev:hover,
+        .hero-carousel .carousel-control-next:hover {
+            opacity: 1;
+        }
+
+        .hero-carousel .carousel-indicators {
+            z-index: 2;
+            margin-bottom: 30px;
+        }
+
+        .hero-carousel .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+        }
+
+        .hero-carousel .carousel-indicators button.active {
+            background-color: var(--color-gold);
         }
 
         /* ==================== ABOUT SECTION ==================== */
@@ -334,7 +379,37 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <img src="{{ asset('images/hero.png') }}" alt="Penari Tradisional Prabhakala" class="hero-image">
+        <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <!-- Slides -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ asset('images/hero.png') }}" alt="Penari Tradisional Prabhakala" class="hero-image">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('images/hero-1.jpg') }}" alt="Penari Tradisional Prabhakala 1" class="hero-image">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('images/hero-2.jpg') }}" alt="Penari Tradisional Prabhakala 2" class="hero-image">
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
         <div class="hero-overlay"></div>
     </section>
 
