@@ -7,5 +7,9 @@ Route::get('/', function () {
 });
 
 Route::get('/beranda', function () {
-    return view('depan.beranda');
+    return view('web.beranda');
+});
+
+Route::get('/login', function () {
+    return view('web.login');
 });

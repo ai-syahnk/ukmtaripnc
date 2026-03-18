@@ -1,4 +1,4 @@
-@extends('depan.layouts.content')
+@extends('web.layouts.content')
 
 @section('title', 'Beranda - Prabhakala E-Booking')
 
@@ -8,7 +8,8 @@
         <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
             <!-- Indicators -->
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                    aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
@@ -64,8 +65,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="gallery-card">
                         <div class="gallery-card-image">
-                            <img src="{{ asset('images/gallery.png') }}" alt="Galeri 1"
-                                onerror="this.style.display='none'">
+                            <img src="{{ asset('images/gallery.png') }}" alt="Galeri 1" onerror="this.style.display='none'">
                         </div>
                         <span class="gallery-card-label">Tentang Kami</span>
                     </div>
@@ -73,8 +73,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="gallery-card">
                         <div class="gallery-card-image">
-                            <img src="{{ asset('images/gallery.png') }}" alt="Galeri 2"
-                                onerror="this.style.display='none'">
+                            <img src="{{ asset('images/gallery.png') }}" alt="Galeri 2" onerror="this.style.display='none'">
                         </div>
                         <span class="gallery-card-label">Tentang Kami</span>
                     </div>
@@ -82,8 +81,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="gallery-card">
                         <div class="gallery-card-image">
-                            <img src="{{ asset('images/gallery.png') }}" alt="Galeri 3"
-                                onerror="this.style.display='none'">
+                            <img src="{{ asset('images/gallery.png') }}" alt="Galeri 3" onerror="this.style.display='none'">
                         </div>
                         <span class="gallery-card-label">Tentang Kami</span>
                     </div>
@@ -91,8 +89,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="gallery-card">
                         <div class="gallery-card-image">
-                            <img src="{{ asset('images/gallery.png') }}" alt="Galeri 4"
-                                onerror="this.style.display='none'">
+                            <img src="{{ asset('images/gallery.png') }}" alt="Galeri 4" onerror="this.style.display='none'">
                         </div>
                         <span class="gallery-card-label">Tentang Kami</span>
                     </div>
@@ -100,4 +97,26 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4 mb-md-0">
+                    <div class="footer-brand">
+                        PRABHAKALA<br>E-BOOKING
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <h3 class="footer-heading">Ready for offers and cooperation</h3>
+                    <ul class="footer-list">
+                        <li>Traditional Dance</li>
+                        <li>Modern Dance</li>
+                        <li>Wedding Dance</li>
+                        <li>Event Performance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 @endsection

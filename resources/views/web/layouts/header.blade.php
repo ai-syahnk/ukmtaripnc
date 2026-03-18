@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="{{ asset('templates/depan/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('templates/web/css/styles.css') }}">
 
     @stack('styles')
 </head>
