@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('web.beranda');
 });
 
 Route::get('/beranda', function () {
@@ -20,4 +20,8 @@ Route::get('/register', function () {
 
 Route::get('/booking', function () {
     return view('web.booking.main');
+});
+
+Route::get('/booking/create', function () {
+    return view('web.booking.create');
 });

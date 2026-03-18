@@ -577,3 +577,151 @@ body {
         width: 100%;
     }
 }
+
+/* ==================== BOOKING CREATE SECTION ==================== */
+.booking-create-section {
+    min-height: calc(100vh - 70px);
+    margin-top: 70px;
+    padding: 2rem 0;
+    background-color: var(--color-bg-dark);
+}
+
+.booking-card-detail {
+    margin-bottom: 1.5rem;
+}
+
+.booking-card-detail .booking-card-content {
+    justify-content: flex-start;
+}
+
+.booking-card-detail .booking-card-price {
+    margin-top: auto;
+}
+
+.booking-form-card {
+    background-color: var(--color-secondary-dark);
+    border-radius: 15px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.booking-form-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+}
+
+.booking-form-label {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-white);
+    min-width: 180px;
+    padding-top: 0.5rem;
+}
+
+.booking-form-colon {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-white);
+    margin-right: 1rem;
+    padding-top: 0.5rem;
+}
+
+.booking-form-input,
+.booking-form-textarea,
+.booking-form-select {
+    flex: 1;
+    max-width: 500px;
+    background-color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    padding: 0.625rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.booking-form-input:focus,
+.booking-form-textarea:focus,
+.booking-form-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-gold);
+}
+
+.booking-form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.booking-form-date {
+    max-width: 200px;
+}
+
+.booking-form-select {
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.booking-form-total {
+    max-width: 200px;
+    background-color: #E8E8E8;
+    font-weight: 500;
+}
+
+.booking-submit-wrapper {
+    margin-top: 0.5rem;
+}
+
+.btn-booking-submit {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-gold);
+    background-color: transparent;
+    border: 2px solid var(--color-gold);
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-booking-submit:hover {
+    background-color: var(--color-gold);
+    color: var(--color-primary-dark);
+}
+
+/* Booking Create Responsive */
+@media (max-width: 767.98px) {
+    .booking-create-section {
+        margin-top: 65px;
+        padding: 1.5rem 0;
+    }
+
+    .booking-form-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .booking-form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .booking-form-label {
+        min-width: auto;
+        margin-bottom: 0.5rem;
+        padding-top: 0;
+    }
+
+    .booking-form-colon {
+        display: none;
+    }
+
+    .booking-form-input,
+    .booking-form-textarea,
+    .booking-form-select,
+    .booking-form-date,
+    .booking-form-total {
+        max-width: 100%;
+        width: 100%;
+    }
+}
