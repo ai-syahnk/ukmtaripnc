@@ -17,3 +17,7 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('web.register');
 });
+
+Route::get('/booking', function () {
+    return view('web.booking.main');
+});

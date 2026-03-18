@@ -1,6 +1,7 @@
 :root {
     --color-primary-dark: #231205;
     --color-secondary-dark: #422C22;
+    --color-bg-dark: #844D17;
     --color-gold: #FEB407;
     --color-gold-light: #FBC602;
     --color-white: #FFFFFF;
@@ -432,5 +433,147 @@ body {
 
     .login-title {
         font-size: 2rem;
+    }
+}
+
+/* ==================== BOOKING SECTION ==================== */
+.booking-section {
+    min-height: calc(100vh - 70px);
+    margin-top: 70px;
+    padding: 2rem 0;
+    background-color: var(--color-bg-dark);
+}
+
+.booking-card {
+    display: flex;
+    background-color: var(--color-secondary-dark);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.booking-card-image {
+    flex: 0 0 280px;
+    min-height: 200px;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.booking-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.booking-card-content {
+    flex: 1;
+    padding: 1.5rem 1.5rem 1.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.booking-card-title {
+    font-family: var(--font-brand);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--color-gold);
+    margin-bottom: 0.75rem;
+}
+
+.booking-card-desc {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--color-white);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.booking-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.btn-booking-lanjutkan {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-gold);
+    background-color: transparent;
+    border: 2px solid var(--color-gold);
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-booking-lanjutkan:hover {
+    background-color: var(--color-gold);
+    color: var(--color-primary-dark);
+}
+
+.booking-card-price {
+    text-align: right;
+}
+
+.booking-card-price .price-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-gold);
+    margin-bottom: 0.25rem;
+}
+
+.booking-card-price .price-value {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-gold);
+}
+
+/* Booking Responsive */
+@media (max-width: 767.98px) {
+    .booking-section {
+        padding: 1.5rem 0;
+        margin-top: 65px;
+    }
+
+    .booking-card {
+        flex-direction: column;
+    }
+
+    .booking-card-image {
+        flex: 0 0 180px;
+        margin: 1rem 1rem 0 1rem;
+    }
+
+    .booking-card-content {
+        padding: 1rem;
+    }
+
+    .booking-card-title {
+        font-size: 1.5rem;
+    }
+
+    .booking-card-desc {
+        font-size: 0.875rem;
+    }
+
+    .booking-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .booking-card-price {
+        text-align: left;
+        width: 100%;
     }
 }
