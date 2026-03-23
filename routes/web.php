@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +12,9 @@ Route::get('/beranda', function () {
     return view('web.beranda');
 });
 
-Route::get('/login', function () {
-    return view('web.login');
-});
+Route::get('/login', [LoginController::class, 'showForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'showForm']);
 Route::post('/register', [RegisterController::class, 'register']);
