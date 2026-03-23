@@ -8,14 +8,33 @@
             <div class="login-card">
                 <h1 class="login-title">BUAT AKUN</h1>
 
+                {{-- Pesan error validasi --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                {{-- Pesan sukses --}}
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 <form action="{{ url('/register') }}" method="POST">
                     @csrf
                     <div class="mb-4">
-                        <input type="text" class="form-control login-input" name="username" placeholder="Username" required>
+                        <input type="text" class="form-control login-input" name="username"
+                            placeholder="Username" value="{{ old('username') }}" required>
                     </div>
                     <div class="mb-4">
-                        <input type="password" class="form-control login-input" name="password" placeholder="Password"
-                            required>
+                        <input type="password" class="form-control login-input" name="password"
+                            placeholder="Password" required>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn login-btn">BUAT</button>
