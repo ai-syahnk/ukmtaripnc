@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('username')->unique()->after('id');
             $table->string('name')->nullable()->change();
             $table->string('email')->nullable()->change();
+            $table->string('level')->after('password');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->dropColumn('username');
             $table->string('name')->nullable(false)->change();
             $table->string('email')->nullable(false)->change();
+            $table->dropColumn('level');
         });
     }
 };
