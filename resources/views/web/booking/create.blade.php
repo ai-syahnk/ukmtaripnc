@@ -8,24 +8,26 @@
             <!-- Dance Info Card -->
             <div class="booking-card booking-card-detail">
                 <div class="booking-card-image">
-                    <img src="{{ asset('images/gallery.png') }}" alt="Tari Gambyong">
+                    <img src="{{ $selectedTari?->gambar ? asset('storage/' . $selectedTari->gambar) : asset('images/gallery.png') }}"
+                        alt="{{ $selectedTari?->nama ?? 'Tari' }}">
                 </div>
                 <div class="booking-card-content">
-                    <h2 class="booking-card-title">Tari Gambyong</h2>
+                    <h2 class="booking-card-title">{{ $selectedTari?->nama ?? 'Tari Tidak Ditemukan' }}</h2>
                     <p class="booking-card-desc">
-                        Tari Gambyong Adalah Tarian Tradisional Klasik Dari Surakarta, Jawa Tengah, Yang Melambangkan Keanggunan, Keluwesan, Dan Kecantikan Seorang Wanita. Awalnya Merupakan Tari Rakyat (Tayub) Untuk Ritual Kesuburan, Kini Tari Ini Populer Sebagai Tarian Penyambutan Tamu.
+                        {{ $selectedTari?->deskripsi ?? 'Silakan kembali ke halaman booking dan pilih salah satu tari yang tersedia.' }}
                     </p>
                     <div class="booking-card-price text-end">
                         <span class="price-label">Harga/penari</span>
-                        <span class="price-value">Rp 450.000,00</span>
+                        <span class="price-value">Rp {{ number_format($selectedTari?->harga ?? 0, 2, ',', '.') }}</span>
                     </div>
                 </div>
             </div>
 
             <!-- Booking Form -->
             <div class="booking-form-card">
-                <form action="{{ url('/booking/store') }}" method="POST">
+                <form action="{{ url('/booking/store') }}" method="POST" id="bookingForm">
                     @csrf
+                    <input type="hidden" name="tari_id" value="{{ $selectedTari?->id }}">
                     <div class="booking-form-row">
                         <label class="booking-form-label">Nama Pemesan</label>
                         <span class="booking-form-colon">:</span>
@@ -47,7 +49,8 @@
                     <div class="booking-form-row">
                         <label class="booking-form-label">Tanggal Tampil</label>
                         <span class="booking-form-colon">:</span>
-                        <input type="date" class="form-control booking-form-input booking-form-date" name="tanggal_tampil" required>
+                        <input type="date" class="form-control booking-form-input booking-form-date"
+                            name="tanggal_tampil" required>
                     </div>
 
                     <div class="booking-form-row">
@@ -72,7 +75,8 @@
                     <div class="booking-form-row">
                         <label class="booking-form-label">TOTAL</label>
                         <span class="booking-form-colon">:</span>
-                        <input type="text" class="form-control booking-form-input booking-form-total" id="totalHarga" value="Rp 450.000,00" readonly>
+                        <input type="text" class="form-control booking-form-input booking-form-total" id="totalHarga"
+                            value="Rp {{ number_format($selectedTari?->harga ?? 0, 2, ',', '.') }}" readonly>
                     </div>
                 </form>
             </div>
@@ -86,12 +90,12 @@
 @endsection
 
 @push('scripts')
-<script>
-    document.getElementById('jumlahPenari').addEventListener('change', function() {
-        const hargaPerPenari = 450000;
-        const jumlah = parseInt(this.value) || 1;
-        const total = hargaPerPenari * jumlah;
-        document.getElementById('totalHarga').value = 'Rp ' + total.toLocaleString('id-ID') + ',00';
-    });
-</script>
+    <script>
+        document.getElementById('jumlahPenari').addEventListener('change', function() {
+            const hargaPerPenari = {{ (int) ($selectedTari?->harga ?? 0) }};
+            const jumlah = parseInt(this.value) || 1;
+            const total = hargaPerPenari * jumlah;
+            document.getElementById('totalHarga').value = 'Rp ' + total.toLocaleString('id-ID') + ',00';
+        });
+    </script>
 @endpush

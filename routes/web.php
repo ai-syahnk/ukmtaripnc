@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TariController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,23 +28,12 @@ Route::middleware('auth')->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/admin/tari', function () {
-        return view('admin.tari');
-    })->name('admin.tari');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('tari', TariController::class)->except(['show']);
+    });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
-
-Route::get('/booking', function () {
-    return view('web.booking.main');
-});
-
-Route::get('/booking/create', function () {
-    return view('web.booking.create');
-});
+Route::get('/booking', [TariController::class, 'bookingIndex'])->name('booking.index');
+Route::get('/booking/create', [TariController::class, 'bookingCreate'])->name('booking.create');

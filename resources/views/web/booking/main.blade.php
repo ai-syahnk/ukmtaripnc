@@ -5,85 +5,37 @@
 @section('content')
     <section class="booking-section">
         <div class="container">
-            <!-- Booking Card 1 -->
-            <div class="booking-card">
-                <div class="booking-card-image">
-                    <img src="{{ asset('images/gallery.png') }}" alt="Tari Gambyong">
-                </div>
-                <div class="booking-card-content">
-                    <h2 class="booking-card-title">Tari Gambyong</h2>
-                    <p class="booking-card-desc">
-                        Tari Gambyong Adalah Tarian Tradisional Klasik Dari Surakarta, Jawa Tengah, Yang Melambangkan Keanggunan, Keluwesan, Dan Kecantikan Seorang Wanita. Awalnya Merupakan Tari Rakyat (Tayub) Untuk Ritual Kesuburan, Kini Tari Ini Populer Sebagai Tarian Penyambutan Tamu.
-                    </p>
-                    <div class="booking-card-footer">
-                        <a href="{{ url('/booking/create') }}" class="btn btn-booking-lanjutkan">Lanjutkan</a>
-                        <div class="booking-card-price">
-                            <span class="price-label">Harga/penari</span>
-                            <span class="price-value">Rp 450.000,00</span>
+            @forelse ($taris as $tari)
+                <div class="booking-card">
+                    <div class="booking-card-image">
+                        <img src="{{ $tari->gambar ? asset('storage/' . $tari->gambar) : asset('images/gallery.png') }}"
+                            alt="{{ $tari->nama }}">
+                    </div>
+                    <div class="booking-card-content">
+                        <h2 class="booking-card-title">{{ $tari->nama }}</h2>
+                        <p class="booking-card-desc">
+                            {{ $tari->deskripsi }}
+                        </p>
+                        <div class="booking-card-footer">
+                            <a href="{{ route('booking.create', ['tari' => $tari->id]) }}"
+                                class="btn btn-booking-lanjutkan">Lanjutkan</a>
+                            <div class="booking-card-price">
+                                <span class="price-label">Harga/penari</span>
+                                <span class="price-value">Rp {{ number_format($tari->harga, 2, ',', '.') }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Booking Card 2 -->
-            <div class="booking-card">
-                <div class="booking-card-image">
-                    <img src="{{ asset('images/gallery.png') }}" alt="Tari Gambyong">
-                </div>
-                <div class="booking-card-content">
-                    <h2 class="booking-card-title">Tari Gambyong</h2>
-                    <p class="booking-card-desc">
-                        Tari Gambyong adalah tarian tradisional klasik dari Surakarta, Jawa Tengah, yang melambangkan keanggunan, keluwesan, dan kecantikan seorang wanita. Awalnya merupakan tari rakyat (Tayub) untuk ritual kesuburan, kini tari ini populer sebagai tarian penyambutan tamu.
-                    </p>
-                    <div class="booking-card-footer">
-                        <a href="{{ url('/booking/create') }}" class="btn btn-booking-lanjutkan">Lanjutkan</a>
-                        <div class="booking-card-price">
-                            <span class="price-label">Harga/penari</span>
-                            <span class="price-value">Rp 450.000,00</span>
-                        </div>
+            @empty
+                <div class="booking-card">
+                    <div class="booking-card-content">
+                        <h2 class="booking-card-title">Data Tari Belum Tersedia</h2>
+                        <p class="booking-card-desc">
+                            Silakan tambah data tari melalui halaman admin agar daftar booking dapat ditampilkan.
+                        </p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Booking Card 3 -->
-            <div class="booking-card">
-                <div class="booking-card-image">
-                    <img src="{{ asset('images/gallery.png') }}" alt="Tari Gambyong">
-                </div>
-                <div class="booking-card-content">
-                    <h2 class="booking-card-title">Tari Gambyong</h2>
-                    <p class="booking-card-desc">
-                        Tari Gambyong adalah tarian tradisional klasik dari Surakarta, Jawa Tengah, yang melambangkan keanggunan, keluwesan, dan kecantikan seorang wanita. Awalnya merupakan tari rakyat (Tayub) untuk ritual kesuburan, kini tari ini populer sebagai tarian penyambutan tamu.
-                    </p>
-                    <div class="booking-card-footer">
-                        <a href="{{ url('/booking/create') }}" class="btn btn-booking-lanjutkan">Lanjutkan</a>
-                        <div class="booking-card-price">
-                            <span class="price-label">Harga/penari</span>
-                            <span class="price-value">Rp 450.000,00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Booking Card 4 -->
-            <div class="booking-card">
-                <div class="booking-card-image">
-                    <img src="{{ asset('images/gallery.png') }}" alt="Tari Gambyong">
-                </div>
-                <div class="booking-card-content">
-                    <h2 class="booking-card-title">Tari Gambyong</h2>
-                    <p class="booking-card-desc">
-                        Tari Gambyong adalah tarian tradisional klasik dari Surakarta, Jawa Tengah, yang melambangkan keanggunan, keluwesan, dan kecantikan seorang wanita. Awalnya merupakan tari rakyat (Tayub) untuk ritual kesuburan, kini tari ini populer sebagai tarian penyambutan tamu.
-                    </p>
-                    <div class="booking-card-footer">
-                        <a href="{{ url('/booking/create') }}" class="btn btn-booking-lanjutkan">Lanjutkan</a>
-                        <div class="booking-card-price">
-                            <span class="price-label">Harga/penari</span>
-                            <span class="price-value">Rp 450.000,00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </section>
 @endsection
