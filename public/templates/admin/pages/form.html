@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms - Admin Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Select2 CSS & Bootstrap 5 Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css">
+
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand text-center py-3">
+                <a href="index.html" class="text-white text-decoration-none fs-4 fw-bold">AdminPanel</a>
+            </div>
+            <ul class="sidebar-nav list-unstyled p-3">
+                <li class="sidebar-item mb-2">
+                    <a href="index.html" class="sidebar-link rounded p-2 d-block text-white text-decoration-none">
+                        <i class="fa-solid fa-house me-2"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item mb-2">
+                    <a href="users.html" class="sidebar-link rounded p-2 d-block text-white text-decoration-none">
+                        <i class="fa-solid fa-users me-2"></i> <span>Users</span>
+                    </a>
+                </li>
+                <li class="sidebar-item mb-2">
+                    <a href="form.html" class="sidebar-link active rounded p-2 d-block text-white text-decoration-none">
+                        <i class="fa-solid fa-wpforms me-2"></i> <span>Forms</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="main">
+            <header class="header px-4 py-3 bg-white shadow-sm d-flex align-items-center justify-content-between">
+                <button class="btn btn-light toggle-sidebar" id="toggle-sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-regular fa-user-circle me-1"></i> Admin
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <main class="content p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="h4 mb-0">Form Components</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-brown border-bottom py-3">
+                                <h5 class="card-title mb-0">Create new user record</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="demoForm">
+                                    <div class="mb-3">
+                                        <label for="inputName" class="form-label fw-medium text-white">Full Name</label>
+                                        <input type="text" class="form-control" id="inputName"
+                                            placeholder="Enter full name" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="roleSelect" class="form-label fw-medium text-white">Role (Single
+                                            Select)</label>
+                                        <select class="form-select select2" id="roleSelect" required>
+                                            <option value=""></option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Editor">Editor</option>
+                                            <option value="Subscriber">Subscriber</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="permissionsSelect"
+                                            class="form-label fw-medium text-white">Permissions (Multi
+                                            Select)</label>
+                                        <select class="form-select select2" id="permissionsSelect" multiple required>
+                                            <option value="Create Data">Create Data</option>
+                                            <option value="Read Data">Read Data</option>
+                                            <option value="Update Data">Update Data</option>
+                                            <option value="Delete Data">Delete Data</option>
+                                            <option value="Generate Reports">Generate Reports</option>
+                                        </select>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-dark w-100">
+                                        <i class="fa-solid fa-paper-plane me-1"></i> Submit Data
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="footer mt-auto p-4 bg-white text-muted text-center border-top">
+                &copy; <span id="year"></span> AdminPanel.
+            </footer>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="../assets/js/app.js"></script>
+</body>
+
+</html>

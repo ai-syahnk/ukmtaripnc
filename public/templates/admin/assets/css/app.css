@@ -1,0 +1,337 @@
+:root {
+    --color-primary-dark: #231205;
+    --color-secondary-dark: #422C22;
+    --color-bg-dark: #844D17;
+    --color-gold: #FEB407;
+    --color-gold-light: #FBC602;
+    --color-white: #FFFFFF;
+    --color-text-muted: #B8B8B8;
+    --font-brand: "Berkshire Swash", serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-dark);
+    color: var(--color-white);
+    overflow-x: hidden;
+}
+
+/* Global Overrides */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-white) !important;
+}
+
+.text-muted {
+    color: var(--color-text-muted) !important;
+}
+
+/* Wrapper */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    min-height: 100vh;
+}
+
+/* Sidebar Layout */
+.sidebar {
+    min-width: 260px;
+    max-width: 260px;
+    /* background-color: #1e293b; */
+    background-color: var(--color-primary-dark);
+    /* Premium dark background */
+    color: var(--color-white);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    z-index: 1040;
+}
+
+/* Sidebar Collapsed State (Desktop) */
+.sidebar.collapsed {
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.sidebar.collapsed .sidebar-brand {
+    font-size: 1.2rem !important;
+}
+
+.sidebar.collapsed .sidebar-item span {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-item i {
+    margin: 0 !important;
+    font-size: 1.2rem;
+    display: block;
+    text-align: center;
+}
+
+/* Sidebar Links */
+.sidebar-link {
+    transition: all 0.3s ease;
+    color: var(--color-white) !important;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background-color: var(--color-secondary-dark);
+    color: var(--color-gold) !important;
+}
+
+/* Sidebar Brand */
+.sidebar-brand {
+    font-family: var(--font-brand);
+}
+
+.sidebar-brand a {
+    color: var(--color-gold) !important;
+    font-weight: 400 !important;
+    letter-spacing: 1px;
+}
+
+/* Main Area */
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+/* Mobile Sidebar Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1030;
+    backdrop-filter: blur(2px);
+}
+
+/* Responsive Logic */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        height: 100vh;
+        left: -260px;
+        /* Hide outside of screen */
+    }
+
+    /* Shown state for Offcanvas logic */
+    .sidebar.show {
+        left: 0;
+    }
+
+    /* Show overlay on mobile */
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    /* Disable desktop collapse visual format on mobile */
+    .sidebar.collapsed {
+        min-width: 260px;
+        max-width: 260px;
+    }
+
+    .sidebar.collapsed .sidebar-item span {
+        display: inline;
+    }
+}
+
+/* ==================== ADMIN UI OVERRIDES ==================== */
+/* Header & Footer */
+.header,
+.footer {
+    background-color: var(--color-primary-dark) !important;
+    color: var(--color-white) !important;
+    border-color: rgba(212, 168, 75, 0.1) !important;
+}
+
+.header .btn-light {
+    background-color: var(--color-secondary-dark);
+    color: var(--color-gold);
+    border: 1px solid var(--color-gold);
+}
+
+.header .btn-light:hover {
+    background-color: var(--color-gold);
+    color: var(--color-primary-dark);
+}
+
+/* Cards */
+.card {
+    background-color: var(--color-secondary-dark) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.card h3 {
+    color: var(--color-gold) !important;
+}
+
+/* Dropdowns */
+.dropdown-menu {
+    background-color: var(--color-primary-dark);
+    border: 1px solid rgba(212, 168, 75, 0.2);
+}
+
+.dropdown-item {
+    color: var(--color-white);
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-secondary-dark);
+    color: var(--color-gold);
+}
+
+.dropdown-divider {
+    border-top-color: var(--color-secondary-dark);
+}
+
+/* ==================== DATATABLES & TABLE OVERRIDES ==================== */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--color-white);
+    --bs-table-hover-bg: var(--color-primary-dark);
+    --bs-table-hover-color: var(--color-white);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.05);
+    border-color: rgba(212, 168, 75, 0.1);
+}
+
+.table thead th {
+    color: var(--color-gold);
+    background-color: var(--color-primary-dark) !important;
+    border-bottom: 2px solid var(--color-gold) !important;
+    font-weight: 600;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+/* DataTables Controls (Search, Length, Info) */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing {
+    color: var(--color-white) !important;
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    background-color: var(--color-primary-dark) !important;
+    color: var(--color-white) !important;
+    border: 1px solid rgba(212, 168, 75, 0.3) !important;
+    border-radius: 6px;
+}
+
+.dataTables_wrapper .dataTables_length select:focus,
+.dataTables_wrapper .dataTables_filter input:focus {
+    border-color: var(--color-gold) !important;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(254, 180, 7, 0.25) !important;
+}
+
+/* Pagination */
+.dataTables_wrapper .dataTables_paginate .pagination .page-item.disabled .page-link {
+    background-color: var(--color-secondary-dark);
+    border-color: rgba(212, 168, 75, 0.2);
+    color: var(--color-text-muted);
+}
+
+.dataTables_wrapper .dataTables_paginate .pagination .page-item .page-link {
+    background-color: var(--color-primary-dark);
+    border-color: rgba(212, 168, 75, 0.2);
+    color: var(--color-gold);
+}
+
+.dataTables_wrapper .dataTables_paginate .pagination .page-item.active .page-link {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-primary-dark);
+    font-weight: 600;
+}
+
+.dataTables_wrapper .dataTables_paginate .pagination .page-item .page-link:hover:not(.disabled) {
+    background-color: var(--color-bg-dark);
+    color: var(--color-white);
+    border-color: var(--color-gold);
+}
+
+/* Edit and Delete Buttons */
+.table .btn-light {
+    background-color: var(--color-primary-dark) !important;
+    border-color: rgba(212, 168, 75, 0.3) !important;
+}
+
+.table .btn-light.text-primary {
+    color: var(--color-gold) !important;
+}
+
+.table .btn-light.text-primary:hover {
+    background-color: var(--color-gold) !important;
+    color: var(--color-primary-dark) !important;
+}
+
+.table .btn-light.text-danger {
+    color: #ff6b6b !important;
+}
+
+.table .btn-light.text-danger:hover {
+    background-color: #ff6b6b !important;
+    color: var(--color-white) !important;
+    border-color: #ff6b6b !important;
+}
+
+/* ==================== SWEETALERT & TOAST OVERRIDES ==================== */
+.swal2-popup {
+    background-color: var(--color-secondary-dark) !important;
+    color: var(--color-white) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(212, 168, 75, 0.2) !important;
+}
+
+.swal2-title,
+.swal2-html-container {
+    color: var(--color-white) !important;
+}
+
+/* Fix for Toasts */
+.swal2-popup.swal2-toast {
+    background-color: var(--color-secondary-dark) !important;
+    color: var(--color-white) !important;
+    border: 1px solid rgba(212, 168, 75, 0.3) !important;
+}
+
+.swal2-toast .swal2-title,
+.swal2-toast .swal2-html-container {
+    color: var(--color-white) !important;
+}
+
+/* Timer progress bar matching theme */
+.swal2-timer-progress-bar {
+    background-color: var(--color-gold) !important;
+}
+
+/* Fix close button visibility */
+.swal2-close {
+    color: var(--color-white) !important;
+}
+
+.swal2-close:hover {
+    color: var(--color-gold) !important;
+}
