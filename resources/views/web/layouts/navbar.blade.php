@@ -35,7 +35,8 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserDropdown">
                             @if (auth()->user()->level === 'admin')
-                                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"
+                                        target="_blank">Dashboard</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

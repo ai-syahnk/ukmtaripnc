@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand text-center py-3">
-        <a href="{{ route('admin.dashboard') }}" class="text-decoration-none d-block">
+        <a href="/" class="text-decoration-none d-block">
             <img src="../../../images/logo.png" alt="Logo" class="img-fluid px-3" style="max-height: 55px;">
         </a>
     </div>
