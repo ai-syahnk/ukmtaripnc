@@ -8,8 +8,8 @@
             <i class="fa-regular fa-user-circle me-1"></i> {{ auth()->user()->name }}
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
+            {{-- <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li> --}}
             <li>
                 <hr class="dropdown-divider">
             </li>
