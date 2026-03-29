@@ -65,7 +65,8 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="gallery-card">
                         <div class="gallery-card-image">
-                            <img src="{{ asset('images/tari/gambyong.jpg') }}" alt="Galeri 1" onerror="this.style.display='none'">
+                            <img src="{{ asset('images/tari/gambyong.jpg') }}" alt="Galeri 1"
+                                onerror="this.style.display='none'">
                         </div>
                         <span class="gallery-card-label">Tentang Kami</span>
                     </div>
@@ -73,7 +74,8 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="gallery-card">
                         <div class="gallery-card-image">
-                            <img src="{{ asset('images/tari/serimpi.jpeg') }}" alt="Galeri 2" onerror="this.style.display='none'">
+                            <img src="{{ asset('images/tari/serimpi.jpeg') }}" alt="Galeri 2"
+                                onerror="this.style.display='none'">
                         </div>
                         <span class="gallery-card-label">Tentang Kami</span>
                     </div>
@@ -81,7 +83,8 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="gallery-card">
                         <div class="gallery-card-image">
-                            <img src="{{ asset('images/tari/bedhaya.webp') }}" alt="Galeri 3" onerror="this.style.display='none'">
+                            <img src="{{ asset('images/tari/bedhaya.webp') }}" alt="Galeri 3"
+                                onerror="this.style.display='none'">
                         </div>
                         <span class="gallery-card-label">Tentang Kami</span>
                     </div>
@@ -89,7 +92,8 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="gallery-card">
                         <div class="gallery-card-image">
-                            <img src="{{ asset('images/tari/bondan.webp') }}" alt="Galeri 4" onerror="this.style.display='none'">
+                            <img src="{{ asset('images/tari/bondan.webp') }}" alt="Galeri 4"
+                                onerror="this.style.display='none'">
                         </div>
                         <span class="gallery-card-label">Tentang Kami</span>
                     </div>

@@ -5,13 +5,8 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\TariController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('web.beranda');
-});
-
-Route::get('/beranda', function () {
-    return view('web.beranda');
-});
+Route::view('/', 'web.beranda');
+Route::view('/beranda', 'web.beranda');
 
 // Route untuk user belum login (guest)
 Route::middleware('guest')->group(function () {
@@ -39,6 +34,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/booking', [TariController::class, 'bookingIndex'])->name('booking.index');
+Route::get('/informasi-booking', [BookingController::class, 'informasiBooking'])->name('booking.info');
 
 Route::middleware('auth')->group(function () {
     Route::get('/booking/history', [BookingController::class, 'history'])->name('booking.history');

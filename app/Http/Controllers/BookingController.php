@@ -49,6 +49,17 @@ class BookingController extends Controller
             ->with('toast_success', 'Status booking berhasil diperbarui.');
     }
 
+    public function informasiBooking(): View
+    {
+        $approvedBookings = Booking::with('tari')
+            ->where('status', 'approved')
+            ->orderBy('tanggal_tampil')
+            ->latest('id')
+            ->paginate(10);
+
+        return view('web.booking.info', compact('approvedBookings'));
+    }
+
     public function history(Request $request): View
     {
         $bookings = Booking::with('tari')

@@ -21,6 +21,10 @@
                     <a class="nav-link {{ request()->is('booking') ? 'active' : '' }}"
                         href="{{ url('/booking') }}">Booking</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('informasi-booking') ? 'active' : '' }}"
+                        href="{{ route('booking.info') }}">Informasi Booking</a>
+                </li>
                 @guest
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('login') ? 'active' : '' }}"
