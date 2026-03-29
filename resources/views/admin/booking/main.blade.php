@@ -116,6 +116,18 @@
                     timerProgressBar: true
                 });
             @endif
+
+            @if (session('toast_error'))
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: '{{ session('toast_error') }}',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            @endif
         });
     </script>
 @endpush

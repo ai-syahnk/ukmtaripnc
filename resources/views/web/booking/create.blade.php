@@ -51,8 +51,16 @@
                     <div class="booking-form-row">
                         <label class="booking-form-label">Tanggal Tampil</label>
                         <span class="booking-form-colon">:</span>
-                        <input type="date" class="form-control booking-form-input booking-form-date"
-                            name="tanggal_tampil" value="{{ old('tanggal_tampil') }}" required>
+                        <div class="flex-grow-1" style="max-width:360px">
+                            <input type="date"
+                                class="form-control booking-form-input booking-form-date {{ $errors->has('tanggal_tampil') ? 'is-invalid' : '' }}"
+                                name="tanggal_tampil" value="{{ old('tanggal_tampil') }}" required>
+                            @error('tanggal_tampil')
+                                <div class="invalid-feedback d-block mt-1" style="color:#ff6b6b;font-size:0.875rem">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="booking-form-row">

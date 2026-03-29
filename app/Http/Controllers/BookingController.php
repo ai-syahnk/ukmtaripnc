@@ -26,6 +26,20 @@ class BookingController extends Controller
             'status' => ['required', Rule::in(['pending', 'approved', 'rejected'])],
         ]);
 
+        if ($validated['status'] === 'approved') {
+            $bentrok = Booking::where('tari_id', $booking->tari_id)
+                ->where('tanggal_tampil', $booking->tanggal_tampil)
+                ->where('status', 'approved')
+                ->where('id', '!=', $booking->id)
+                ->exists();
+
+            if ($bentrok) {
+                return redirect()
+                    ->route('admin.booking.index')
+                    ->with('toast_error', 'Gagal: Tari ini sudah ada booking approved pada tanggal ' . $booking->tanggal_tampil->format('d/m/Y') . '.');
+            }
+        }
+
         $booking->update([
             'status' => $validated['status'],
         ]);
@@ -67,6 +81,17 @@ class BookingController extends Controller
             'catatan' => ['nullable', 'string'],
             'jumlah_penari' => ['required', 'integer', 'min:1', 'max:5'],
         ]);
+
+        $bentrok = Booking::where('tari_id', $validated['tari_id'])
+            ->where('tanggal_tampil', $validated['tanggal_tampil'])
+            ->whereIn('status', ['pending', 'approved'])
+            ->exists();
+
+        if ($bentrok) {
+            return back()
+                ->withInput()
+                ->withErrors(['tanggal_tampil' => 'Tari ini sudah dipesan pada tanggal tersebut. Silakan pilih tanggal lain.']);
+        }
 
         $tari = Tari::findOrFail($validated['tari_id']);
         $hargaPerPenari = (float) $tari->harga;
