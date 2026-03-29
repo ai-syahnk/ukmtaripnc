@@ -87,12 +87,12 @@ class TariController extends Controller
 
     public function bookingCreate(Request $request): View
     {
-        $selectedTari = Tari::find($request->query('tari'));
-
+        $selectedTari = Tari::find($request->query('tari_id'));
+        // dd($selectedTari);
         if (! $selectedTari) {
             $selectedTari = Tari::latest()->first();
         }
-
+        
         return view('web.booking.create', compact('selectedTari'));
     }
 }

@@ -17,7 +17,7 @@
                             {{ $tari->deskripsi }}
                         </p>
                         <div class="booking-card-footer">
-                            <a href="{{ auth()->check() ? route('booking.create', ['tari' => $tari->id]) : route('login') }}"
+                            <a href="{{ auth()->check() ? route('booking.create', ['tari_id' => $tari->id]) : route('login') }}"
                                 class="btn btn-booking-lanjutkan">Lanjutkan</a>
                             <div class="booking-card-price">
                                 <span class="price-label">Harga/penari</span>

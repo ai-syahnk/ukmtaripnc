@@ -31,19 +31,21 @@
                     <div class="booking-form-row">
                         <label class="booking-form-label">Nama Pemesan</label>
                         <span class="booking-form-colon">:</span>
-                        <input type="text" class="form-control booking-form-input" name="nama_pemesan" required>
+                        <input type="text" class="form-control booking-form-input" name="nama_pemesan"
+                            value="{{ old('nama_pemesan', auth()->user()->name) }}" required>
                     </div>
 
                     <div class="booking-form-row">
                         <label class="booking-form-label">Alamat Pentas</label>
                         <span class="booking-form-colon">:</span>
-                        <textarea class="form-control booking-form-textarea" name="alamat_pentas" rows="4" required></textarea>
+                        <textarea class="form-control booking-form-textarea" name="alamat_pentas" rows="4" required>{{ old('alamat_pentas', auth()->user()->alamat) }}</textarea>
                     </div>
 
                     <div class="booking-form-row">
                         <label class="booking-form-label">No. Telp</label>
                         <span class="booking-form-colon">:</span>
-                        <input type="tel" class="form-control booking-form-input" name="no_telp" required>
+                        <input type="tel" class="form-control booking-form-input" name="no_telp"
+                            value="{{ old('no_telp', auth()->user()->no_telp) }}" required>
                     </div>
 
                     <div class="booking-form-row">
@@ -83,7 +85,7 @@
 
             <!-- Submit Button -->
             <div class="booking-submit-wrapper">
-                <button type="submit" class="btn btn-booking-submit" form="bookingForm">Pesan Sekarang</button>
+                <button type="submit" class="btn btn-warning" form="bookingForm">Pesan Sekarang</button>
             </div>
         </div>
     </section>
