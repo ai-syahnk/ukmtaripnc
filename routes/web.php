@@ -24,11 +24,11 @@ Route::middleware('guest')->group(function () {
 
 // Route untuk user yang sudah login (auth)
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
 
-    Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('tari', TariController::class)->except(['show']);
     });
 

@@ -72,6 +72,16 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
 
+            if (Auth::user()->level !== 'admin') {
+                $intendedUrl = $request->session()->get('url.intended');
+
+                if ($intendedUrl && str_contains($intendedUrl, '/admin')) {
+                    $request->session()->forget('url.intended');
+                }
+
+                return redirect()->intended('/beranda');
+            }
+
             return redirect()->intended('/admin/dashboard');
         }
 
