@@ -18,5 +18,11 @@
                 <i class="fa-solid fa-list me-2"></i> <span>List Tari</span>
             </a>
         </li>
+        <li class="sidebar-item mb-2">
+            <a href="{{ route('admin.booking.index') }}"
+                class="sidebar-link rounded p-2 d-block text-white text-decoration-none {{ request()->routeIs('admin.booking.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-calendar-check me-2"></i> <span>Booking</span>
+            </a>
+        </li>
     </ul>
 </aside>

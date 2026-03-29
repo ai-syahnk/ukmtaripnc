@@ -25,7 +25,7 @@
 
             <!-- Booking Form -->
             <div class="booking-form-card">
-                <form action="{{ url('/booking/store') }}" method="POST" id="bookingForm">
+                <form action="{{ route('booking.store') }}" method="POST" id="bookingForm">
                     @csrf
                     <input type="hidden" name="tari_id" value="{{ $selectedTari?->id }}">
                     <div class="booking-form-row">
@@ -52,25 +52,24 @@
                         <label class="booking-form-label">Tanggal Tampil</label>
                         <span class="booking-form-colon">:</span>
                         <input type="date" class="form-control booking-form-input booking-form-date"
-                            name="tanggal_tampil" required>
+                            name="tanggal_tampil" value="{{ old('tanggal_tampil') }}" required>
                     </div>
 
                     <div class="booking-form-row">
                         <label class="booking-form-label">Catatan</label>
                         <span class="booking-form-colon">:</span>
-                        <textarea class="form-control booking-form-textarea" name="catatan" rows="4"></textarea>
+                        <textarea class="form-control booking-form-textarea" name="catatan" rows="4">{{ old('catatan') }}</textarea>
                     </div>
 
                     <div class="booking-form-row">
                         <label class="booking-form-label">Pilih Jumlah Penari</label>
                         <span class="booking-form-colon">:</span>
                         <select class="form-select booking-form-select" name="jumlah_penari" id="jumlahPenari" required>
-                            {{-- <option value="" selected disabled></option> --}}
-                            <option value="1" selected>1 Penari</option>
-                            <option value="2">2 Penari</option>
-                            <option value="3">3 Penari</option>
-                            <option value="4">4 Penari</option>
-                            <option value="5">5 Penari</option>
+                            <option value="1" {{ old('jumlah_penari', 1) == 1 ? 'selected' : '' }}>1 Penari</option>
+                            <option value="2" {{ old('jumlah_penari') == 2 ? 'selected' : '' }}>2 Penari</option>
+                            <option value="3" {{ old('jumlah_penari') == 3 ? 'selected' : '' }}>3 Penari</option>
+                            <option value="4" {{ old('jumlah_penari') == 4 ? 'selected' : '' }}>4 Penari</option>
+                            <option value="5" {{ old('jumlah_penari') == 5 ? 'selected' : '' }}>5 Penari</option>
                         </select>
                     </div>
 

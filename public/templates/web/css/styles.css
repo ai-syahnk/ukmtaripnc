@@ -817,3 +817,157 @@ body {
         width: 100%;
     }
 }
+
+/* ==================== CARD & DATATABLE THEME ==================== */
+.card {
+    background-color: var(--color-secondary-dark) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    color: var(--color-white);
+}
+
+.card h3 {
+    color: var(--color-gold) !important;
+}
+
+.card .card-text,
+.card p,
+.card small,
+.card .text-muted {
+    color: var(--color-white) !important;
+}
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--color-white);
+    --bs-table-hover-bg: var(--color-primary-dark);
+    --bs-table-hover-color: var(--color-white);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.05);
+    border-color: rgba(212, 168, 75, 0.1);
+}
+
+.table thead th {
+    color: var(--color-gold);
+    background-color: var(--color-primary-dark) !important;
+    border-bottom: 2px solid var(--color-gold) !important;
+    font-weight: 600;
+}
+
+.table tbody td {
+    color: var(--color-white);
+    vertical-align: middle;
+}
+
+.table-light,
+.table-light>th,
+.table-light>td {
+    background-color: var(--color-primary-dark) !important;
+    color: var(--color-gold) !important;
+    border-color: rgba(212, 168, 75, 0.2) !important;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing {
+    color: var(--color-white) !important;
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    background-color: var(--color-primary-dark) !important;
+    color: var(--color-white) !important;
+    border: 1px solid rgba(212, 168, 75, 0.3) !important;
+    border-radius: 6px;
+}
+
+.dataTables_wrapper .dataTables_length select:focus,
+.dataTables_wrapper .dataTables_filter input:focus {
+    border-color: var(--color-gold) !important;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(254, 180, 7, 0.25) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .pagination .page-item.disabled .page-link {
+    background-color: var(--color-secondary-dark);
+    border-color: rgba(212, 168, 75, 0.2);
+    color: var(--color-text-muted);
+}
+
+.dataTables_wrapper .dataTables_paginate .pagination .page-item .page-link {
+    background-color: var(--color-primary-dark);
+    border-color: rgba(212, 168, 75, 0.2);
+    color: var(--color-gold);
+}
+
+.dataTables_wrapper .dataTables_paginate .pagination .page-item.active .page-link {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-primary-dark);
+    font-weight: 600;
+}
+
+.dataTables_wrapper .dataTables_paginate .pagination .page-item .page-link:hover:not(.disabled) {
+    background-color: var(--color-bg-dark);
+    color: var(--color-white);
+    border-color: var(--color-gold);
+}
+
+/* .dataTables_wrapper .dataTables_paginate .paginate_button,
+.dataTables_wrapper .dataTables_paginate .paginate_button a {
+    color: var(--color-gold) !important;
+} */
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: var(--color-gold) !important;
+    border-color: var(--color-gold) !important;
+    color: var(--color-primary-dark) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: var(--color-bg-dark) !important;
+    border-color: var(--color-gold) !important;
+    color: var(--color-white) !important;
+}
+
+/* ==================== SWEETALERT & TOAST OVERRIDES ==================== */
+.swal2-popup {
+    background-color: var(--color-secondary-dark) !important;
+    color: var(--color-white) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(212, 168, 75, 0.2) !important;
+}
+
+.swal2-title,
+.swal2-html-container {
+    color: var(--color-white) !important;
+}
+
+/* Fix for Toasts */
+.swal2-popup.swal2-toast {
+    background-color: var(--color-secondary-dark) !important;
+    color: var(--color-white) !important;
+    border: 1px solid rgba(212, 168, 75, 0.3) !important;
+}
+
+.swal2-toast .swal2-title,
+.swal2-toast .swal2-html-container {
+    color: var(--color-white) !important;
+}
+
+/* Timer progress bar matching theme */
+.swal2-timer-progress-bar {
+    background-color: var(--color-gold) !important;
+}
+
+/* Fix close button visibility */
+.swal2-close {
+    color: var(--color-white) !important;
+}
+
+.swal2-close:hover {
+    color: var(--color-gold) !important;
+}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\TariController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +31,17 @@ Route::middleware('auth')->group(function () {
         })->name('dashboard');
 
         Route::resource('tari', TariController::class)->except(['show']);
+        Route::get('/booking', [BookingController::class, 'adminIndex'])->name('booking.index');
+        Route::patch('/booking/{booking}/status', [BookingController::class, 'updateStatus'])->name('booking.update-status');
     });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::get('/booking', [TariController::class, 'bookingIndex'])->name('booking.index');
-Route::get('/booking/create', [TariController::class, 'bookingCreate'])->middleware('auth')->name('booking.create');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/booking/history', [BookingController::class, 'history'])->name('booking.history');
+    Route::get('/booking/create', [BookingController::class, 'create'])->name('booking.create');
+    Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+});
