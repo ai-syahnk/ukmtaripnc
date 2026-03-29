@@ -36,4 +36,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/booking', [TariController::class, 'bookingIndex'])->name('booking.index');
-Route::get('/booking/create', [TariController::class, 'bookingCreate'])->name('booking.create');
+Route::get('/booking/create', [TariController::class, 'bookingCreate'])->middleware('auth')->name('booking.create');
