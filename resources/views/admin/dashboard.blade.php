@@ -143,7 +143,7 @@
                 const logoutUrl = $(this).attr('href');
 
                 Swal.fire({
-                    title: 'Apakah yakin ingin keluar?',
+                    title: 'Yakin ingin keluar?',
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonText: 'Ya, keluar',
