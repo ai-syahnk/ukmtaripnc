@@ -21,20 +21,37 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
+            'name' => 'required|string|min:3|max:100',
             'username' => 'required|string|min:3|max:50|unique:users,username',
+            'alamat' => 'required|string|min:5|max:255',
+            'no_telp' => ['required', 'string', 'min:10', 'max:20', 'regex:/^\+?\d+$/'],
             'password' => 'required|string|min:6',
         ], [
+            'name.required' => 'Nama wajib diisi.',
+            'name.min' => 'Nama minimal 3 karakter.',
+            'name.max' => 'Nama maksimal 100 karakter.',
             'username.required' => 'Username wajib diisi.',
             'username.min' => 'Username minimal 3 karakter.',
             'username.max' => 'Username maksimal 50 karakter.',
             'username.unique' => 'Username sudah digunakan.',
+            'alamat.required' => 'Alamat wajib diisi.',
+            'alamat.min' => 'Alamat minimal 5 karakter.',
+            'alamat.max' => 'Alamat maksimal 255 karakter.',
+            'no_telp.required' => 'Nomor telepon wajib diisi.',
+            'no_telp.min' => 'Nomor telepon minimal 10 karakter.',
+            'no_telp.max' => 'Nomor telepon maksimal 20 karakter.',
+            'no_telp.regex' => 'Nomor telepon hanya boleh berisi angka dan tanda + di awal.',
             'password.required' => 'Password wajib diisi.',
             'password.min' => 'Password minimal 6 karakter.',
         ]);
 
         User::create([
+            'name' => $request->name,
             'username' => $request->username,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
             'password' => $request->password,
+            'level' => 'user',
         ]);
 
         return redirect('/login')->with('success', 'Akun berhasil dibuat! Silakan login.');
