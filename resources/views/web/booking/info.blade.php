@@ -21,7 +21,7 @@
                         </div>
                     @else
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover mb-0 align-middle">
+                            <table class="table table-striped table-hover mb-0 align-middle" id="bookingTable">
                                 <thead class="table-light">
                                     <tr>
                                         <th>#</th>
@@ -61,3 +61,27 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        // Inisialisasi DataTables
+        $(function() {
+            $('#bookingTable').DataTable({
+                "lengthChange": true,
+                "pageLength": 10,
+                "language": {
+                    "search": "Cari:",
+                    "lengthMenu": "Tampilkan _MENU_ booking",
+                    "paginate": {
+                        "previous": "Sebelumnya",
+                        "next": "Berikutnya"
+                    },
+                    "info": "Menampilkan _START_ - _END_ dari _TOTAL_ booking",
+                    "infoEmpty": "Tidak ada booking yang tersedia",
+                    "emptyTable": "Tidak ada booking yang tersedia",
+                    "zeroRecords": "Tidak ada booking yang ditemukan"
+                }
+            });
+        });
+    </script>
+@endpush

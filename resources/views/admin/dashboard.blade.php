@@ -19,8 +19,8 @@
                         <i class="fa-solid fa-users fs-4"></i>
                     </div>
                     <div>
-                        <h6 class="card-title text-muted mb-1">Pelanggan</h6>
-                        <h3 class="mb-0 fw-bold">15</h3>
+                        <h6 class="card-title text-muted mb-1">Users</h6>
+                        <h3 class="mb-0 fw-bold">{{ $usersCount ?? 0 }}</h3>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <h6 class="card-title text-muted mb-1">Booking</h6>
-                        <h3 class="mb-0 fw-bold">20</h3>
+                        <h3 class="mb-0 fw-bold">{{ $bookingCount ?? 0 }}</h3>
                     </div>
                 </div>
             </div>
@@ -45,8 +45,8 @@
                         <i class="fa-solid fa-wallet fs-4"></i>
                     </div>
                     <div>
-                        <h6 class="card-title text-muted mb-1">Order Masuk</h6>
-                        <h3 class="mb-0 fw-bold fs-4">Rp10.000.000</h3>
+                        <h6 class="card-title text-muted mb-1">Total Pemasukan</h6>
+                        <h3 class="mb-0 fw-bold fs-4">Rp{{ number_format($approvedOrderTotal ?? 0, 0, ',', '.') }}</h3>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div>
                         <h6 class="card-title text-muted mb-1">Jadwal Pentas</h6>
-                        <h3 class="mb-0 fw-bold">14</h3>
+                        <h3 class="mb-0 fw-bold">{{ $approvedBookingCount ?? 0 }}</h3>
                     </div>
                 </div>
             </div>
@@ -85,86 +85,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td class="ps-4">Tari Topeng Cirebon</td>
-                            <td>01-03-2026</td>
-                            <td>19:00</td>
-                            <td>Gedung Kesenian</td>
-                            <td class="pe-4 text-end"><span class="badge bg-success">Terjadwal</span></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td class="ps-4">Tari Saman Aceh</td>
-                            <td>02-03-2026</td>
-                            <td>20:00</td>
-                            <td>Balai Budaya</td>
-                            <td class="pe-4 text-end"><span class="badge bg-success">Terjadwal</span></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td class="ps-4">Tari Pendet Bali</td>
-                            <td>03-03-2026</td>
-                            <td>18:30</td>
-                            <td>Aula Seni Pertunjukan</td>
-                            <td class="pe-4 text-end"><span class="badge bg-warning">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td class="ps-4">Tari Zapin Melayu</td>
-                            <td>04-03-2026</td>
-                            <td>19:30</td>
-                            <td>Gedung Kesenian</td>
-                            <td class="pe-4 text-end"><span class="badge bg-success">Terjadwal</span></td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td class="ps-4">Tari Kuda Lumping Jawa</td>
-                            <td>05-03-2026</td>
-                            <td>20:00</td>
-                            <td>Balai Budaya</td>
-                            <td class="pe-4 text-end"><span class="badge bg-success">Terjadwal</span></td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td class="ps-4">Tari Legong Keraton Bali</td>
-                            <td>06-03-2026</td>
-                            <td>19:00</td>
-                            <td>Aula Seni Pertunjukan</td>
-                            <td class="pe-4 text-end"><span class="badge bg-warning">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td class="ps-4">Tari Poco-poco Kalimantan</td>
-                            <td>07-03-2026</td>
-                            <td>18:00</td>
-                            <td>Gedung Kesenian</td>
-                            <td class="pe-4 text-end"><span class="badge bg-success">Terjadwal</span></td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td class="ps-4">Tari Remo Jawa Timur</td>
-                            <td>08-03-2026</td>
-                            <td>19:30</td>
-                            <td>Balai Budaya</td>
-                            <td class="pe-4 text-end"><span class="badge bg-danger">Ditolak</span></td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td class="ps-4">Tari Serimpi Yogyakarta</td>
-                            <td>09-03-2026</td>
-                            <td>20:00</td>
-                            <td>Aula Seni Pertunjukan</td>
-                            <td class="pe-4 text-end"><span class="badge bg-success">Terjadwal</span></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td class="ps-4">Tari Jaipong Sunda</td>
-                            <td>10-03-2026</td>
-                            <td>19:00</td>
-                            <td>Gedung Kesenian</td>
-                            <td class="pe-4 text-end"><span class="badge bg-warning">Pending</span></td>
-                        </tr>
+                        @forelse ($jadwalPentas as $jadwal)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="ps-4">{{ $jadwal->tari->nama ?? '-' }}</td>
+                                <td>{{ optional($jadwal->tanggal_tampil)->format('d-m-Y') ?? '-' }}</td>
+                                <td>-</td>
+                                <td>{{ $jadwal->alamat_pentas }}</td>
+                                <td class="pe-4 text-end">
+                                    @if ($jadwal->status === 'approved')
+                                        <span class="badge bg-success">Terjadwal</span>
+                                    @elseif ($jadwal->status === 'pending')
+                                        <span class="badge bg-warning">Pending</span>
+                                    @elseif ($jadwal->status === 'rejected')
+                                        <span class="badge bg-danger">Ditolak</span>
+                                    @else
+                                        <span class="badge bg-secondary">{{ ucfirst($jadwal->status) }}</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-4">Belum ada jadwal pentas.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
