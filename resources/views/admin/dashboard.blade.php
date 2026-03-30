@@ -45,7 +45,7 @@
                     <i class="fa-solid fa-wallet fs-4"></i>
                 </div>
                 <div>
-                    <h6 class="card-title text-muted mb-1">Total Pemasukan</h6>
+                    <h6 class="card-title text-muted mb-1">Pemasukan (Lunas)</h6>
                     <h3 class="mb-0 fw-bold fs-4">Rp{{ number_format($approvedOrderTotal ?? 0, 0, ',', '.') }}</h3>
                 </div>
             </div>
@@ -91,16 +91,21 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ optional($jadwal->tanggal_tampil)->format('d-m-Y') ?? '-' }}</td>
-                        <td class="ps-4">{{ $jadwal->tari->nama ?? '-' }} ({{ $jadwal->jumlah_penari ?? '-' }} Penari)</td>
+                        <td class="ps-4">{{ $jadwal->tari->nama ?? '-' }} ({{ $jadwal->jumlah_penari ?? '-' }} Penari)
+                        </td>
                         {{-- <td>-</td> --}}
                         <td>{{ $jadwal->nama_pemesan ?? '-' }}</td>
                         <td>{{ $jadwal->no_telp ?? '-' }}</td>
                         <td>{{ $jadwal->alamat_pentas }}</td>
                         <td class="pe-4 text-end">
-                            @if ($jadwal->status === 'approved')
-                            <span class="badge bg-success">Terjadwal</span>
+                            @if ($jadwal->status === 'paid')
+                            <span class="badge bg-success">Lunas</span>
+                            @elseif ($jadwal->status === 'approved')
+                            <span class="badge bg-warning">Menunggu Bayar</span>
+                            @elseif ($jadwal->status === 'waiting_confirmation')
+                            <span class="badge bg-info">Verifikasi Bayar</span>
                             @elseif ($jadwal->status === 'pending')
-                            <span class="badge bg-warning">Pending</span>
+                            <span class="badge bg-secondary">Pending</span>
                             @elseif ($jadwal->status === 'rejected')
                             <span class="badge bg-danger">Ditolak</span>
                             @else

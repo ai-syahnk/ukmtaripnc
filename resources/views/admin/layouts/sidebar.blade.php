@@ -24,5 +24,11 @@
                 <i class="fa-solid fa-calendar-check me-2"></i> <span>Booking</span>
             </a>
         </li>
+        <li class="sidebar-item mb-2">
+            <a href="{{ route('admin.payment.index') }}"
+                class="sidebar-link rounded p-2 d-block text-white text-decoration-none {{ request()->routeIs('admin.payment.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-credit-card me-2"></i> <span>Verifikasi Pembayaran</span>
+            </a>
+        </li>
     </ul>
 </aside>

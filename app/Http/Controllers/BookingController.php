@@ -40,9 +40,15 @@ class BookingController extends Controller
             }
         }
 
-        $booking->update([
-            'status' => $validated['status'],
-        ]);
+        $updateData = ['status' => $validated['status']];
+
+        if ($validated['status'] === 'approved') {
+            $deadlineHours = config('payment.payment_deadline_hours', 24);
+            $updateData['approved_at'] = now();
+            $updateData['payment_deadline'] = now()->addHours($deadlineHours);
+        }
+
+        $booking->update($updateData);
 
         return redirect()
             ->route('admin.booking.index')
@@ -52,7 +58,7 @@ class BookingController extends Controller
     public function informasiBooking(): View
     {
         $approvedBookings = Booking::with('tari')
-            ->where('status', 'approved')
+            ->whereIn('status', ['approved', 'waiting_confirmation', 'paid'])
             ->orderBy('tanggal_tampil')
             ->latest('id')
             ->paginate(10);
@@ -62,6 +68,13 @@ class BookingController extends Controller
 
     public function history(Request $request): View
     {
+        // Auto-expire overdue bookings for this user
+        Booking::where('user_id', $request->user()->id)
+            ->where('status', 'approved')
+            ->whereNotNull('payment_deadline')
+            ->where('payment_deadline', '<', now())
+            ->update(['status' => 'expired']);
+
         $bookings = Booking::with('tari')
             ->where('user_id', $request->user()->id)
             ->latest()

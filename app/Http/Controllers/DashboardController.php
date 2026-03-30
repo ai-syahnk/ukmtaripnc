@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Payment;
 use App\Models\User;
 use Illuminate\View\View;
 
@@ -12,10 +13,11 @@ class DashboardController extends Controller
     {
         $usersCount = User::where('level', '!=', 'admin')->count();
         $bookingCount = Booking::count();
-        $approvedBookingCount = Booking::where('status', 'approved')->count();
-        $approvedOrderTotal = Booking::where('status', 'approved')->sum('total_harga');
+        $approvedBookingCount = Booking::whereIn('status', ['approved', 'waiting_confirmation', 'paid'])->count();
+        $approvedOrderTotal = Booking::where('status', 'paid')->sum('total_harga');
+        $pendingPaymentCount = Payment::where('status', 'pending')->count();
         $jadwalPentas = Booking::with('tari')
-            ->where('status', 'approved')
+            ->whereIn('status', ['approved', 'waiting_confirmation', 'paid'])
             ->orderBy('tanggal_tampil')
             ->latest('id')
             ->get();
@@ -25,6 +27,7 @@ class DashboardController extends Controller
             'bookingCount',
             'approvedBookingCount',
             'approvedOrderTotal',
+            'pendingPaymentCount',
             'jadwalPentas'
         ));
     }

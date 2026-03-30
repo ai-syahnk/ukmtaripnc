@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TariController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('tari', TariController::class)->except(['show']);
         Route::get('/booking', [BookingController::class, 'adminIndex'])->name('booking.index');
         Route::patch('/booking/{booking}/status', [BookingController::class, 'updateStatus'])->name('booking.update-status');
+
+        Route::get('/payment', [PaymentController::class, 'adminIndex'])->name('payment.index');
+        Route::patch('/payment/{payment}/verify', [PaymentController::class, 'verify'])->name('payment.verify');
     });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -39,4 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/booking/history', [BookingController::class, 'history'])->name('booking.history');
     Route::get('/booking/create', [BookingController::class, 'create'])->name('booking.create');
     Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+
+    Route::get('/booking/{booking}/payment', [PaymentController::class, 'show'])->name('booking.payment');
+    Route::post('/booking/{booking}/payment', [PaymentController::class, 'store'])->name('booking.payment.store');
+    Route::get('/booking/{booking}/invoice', [PaymentController::class, 'invoice'])->name('booking.invoice');
 });
