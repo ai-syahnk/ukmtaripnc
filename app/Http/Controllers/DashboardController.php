@@ -15,10 +15,11 @@ class DashboardController extends Controller
         $approvedBookingCount = Booking::where('status', 'approved')->count();
         $approvedOrderTotal = Booking::where('status', 'approved')->sum('total_harga');
         $jadwalPentas = Booking::with('tari')
+            ->where('status', 'approved')
             ->orderBy('tanggal_tampil')
             ->latest('id')
             ->get();
-
+        // dd($jadwalPentas);
         return view('admin.dashboard', compact(
             'usersCount',
             'bookingCount',
