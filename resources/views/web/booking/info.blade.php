@@ -26,6 +26,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Tanggal Tampil</th>
+                                <th>Waktu Tampil</th>
                                 <th>Nama Tari</th>
                                 <th>Jumlah Penari</th>
                                 <th>Lokasi Pentas</th>
@@ -37,6 +38,8 @@
                             <tr>
                                 <td>{{ $approvedBookings->firstItem() + $loop->index }}</td>
                                 <td>{{ $booking->tanggal_tampil?->format('d/m/Y') ?? '-' }}</td>
+                                <td>{{ $booking->waktu_tampil ?
+                                    \Carbon\Carbon::parse($booking->waktu_tampil)->format('H:i') : '-' }}</td>
                                 <td>{{ $booking->tari?->nama ?? '-' }}</td>
                                 <td>{{ $booking->jumlah_penari }} Penari</td>
                                 <td>{{ $booking->alamat_pentas }}</td>

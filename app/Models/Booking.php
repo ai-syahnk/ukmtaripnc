@@ -19,6 +19,7 @@ class Booking extends Model
         'alamat_pentas',
         'no_telp',
         'tanggal_tampil',
+        'waktu_tampil',
         'catatan',
         'jumlah_penari',
         'harga_per_penari',
@@ -32,6 +33,7 @@ class Booking extends Model
     {
         return [
             'tanggal_tampil' => 'date',
+            'waktu_tampil' => 'string',
             'jumlah_penari' => 'integer',
             'harga_per_penari' => 'decimal:2',
             'total_harga' => 'decimal:2',

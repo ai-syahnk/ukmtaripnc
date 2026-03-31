@@ -19,6 +19,7 @@
                                 <th>Pemesan</th>
                                 <th>Tari</th>
                                 <th>Tanggal Tampil</th>
+                                <th>Waktu Tampil</th>
                                 <th>Jumlah Penari</th>
                                 <th>Total</th>
                                 <th>Status</th>
@@ -56,6 +57,8 @@
                                 </td>
                                 <td>{{ $booking->tari?->nama ?? '-' }}</td>
                                 <td>{{ $booking->tanggal_tampil?->format('d/m/Y') ?? '-' }}</td>
+                                <td>{{ $booking->waktu_tampil ?
+                                    \Carbon\Carbon::parse($booking->waktu_tampil)->format('H:i') : '-' }}</td>
                                 <td>{{ $booking->jumlah_penari }} Penari</td>
                                 <td>Rp {{ number_format((float) $booking->total_harga, 2, ',', '.') }}</td>
                                 <td>

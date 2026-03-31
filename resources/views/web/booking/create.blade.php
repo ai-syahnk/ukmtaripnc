@@ -3,111 +3,126 @@
 @section('title', 'Booking Tari - Prabhakala E-Booking')
 
 @section('content')
-    <section class="booking-create-section">
-        <div class="container">
-            <!-- Dance Info Card -->
-            <div class="booking-card booking-card-detail">
-                <div class="booking-card-image">
-                    <img src="{{ $selectedTari?->gambar ? asset('storage/' . $selectedTari->gambar) : asset('images/gallery.png') }}"
-                        alt="{{ $selectedTari?->nama ?? 'Tari' }}">
-                </div>
-                <div class="booking-card-content">
-                    <h2 class="booking-card-title">{{ $selectedTari?->nama ?? 'Tari Tidak Ditemukan' }}</h2>
-                    <p class="booking-card-desc">
-                        {{ $selectedTari?->deskripsi ?? 'Silakan kembali ke halaman booking dan pilih salah satu tari yang tersedia.' }}
-                    </p>
-                    <div class="booking-card-price text-end">
-                        <span class="price-label">Harga/penari</span>
-                        <span class="price-value">Rp {{ number_format($selectedTari?->harga ?? 0, 2, ',', '.') }}</span>
-                    </div>
+<section class="booking-create-section">
+    <div class="container">
+        <!-- Dance Info Card -->
+        <div class="booking-card booking-card-detail">
+            <div class="booking-card-image">
+                <img src="{{ $selectedTari?->gambar ? asset('storage/' . $selectedTari->gambar) : asset('images/gallery.png') }}"
+                    alt="{{ $selectedTari?->nama ?? 'Tari' }}">
+            </div>
+            <div class="booking-card-content">
+                <h2 class="booking-card-title">{{ $selectedTari?->nama ?? 'Tari Tidak Ditemukan' }}</h2>
+                <p class="booking-card-desc">
+                    {{ $selectedTari?->deskripsi ?? 'Silakan kembali ke halaman booking dan pilih salah satu tari yang
+                    tersedia.' }}
+                </p>
+                <div class="booking-card-price text-end">
+                    <span class="price-label">Harga/penari</span>
+                    <span class="price-value">Rp {{ number_format($selectedTari?->harga ?? 0, 2, ',', '.') }}</span>
                 </div>
             </div>
+        </div>
 
-            <!-- Booking Form -->
-            <div class="booking-form-card">
-                <form action="{{ route('booking.store') }}" method="POST" id="bookingForm">
-                    @csrf
-                    <input type="hidden" name="tari_id" value="{{ $selectedTari?->id }}">
-                    <div class="booking-form-row">
-                        <label class="booking-form-label">Nama Pemesan</label>
-                        <span class="booking-form-colon">:</span>
-                        <input type="text" class="form-control booking-form-input" name="nama_pemesan"
-                            value="{{ old('nama_pemesan', auth()->user()->name) }}" required>
-                    </div>
+        <!-- Booking Form -->
+        <div class="booking-form-card">
+            <form action="{{ route('booking.store') }}" method="POST" id="bookingForm">
+                @csrf
+                <input type="hidden" name="tari_id" value="{{ $selectedTari?->id }}">
+                <div class="booking-form-row">
+                    <label class="booking-form-label">Nama Pemesan</label>
+                    <span class="booking-form-colon">:</span>
+                    <input type="text" class="form-control booking-form-input" name="nama_pemesan"
+                        value="{{ old('nama_pemesan', auth()->user()->name) }}" required>
+                </div>
 
-                    <div class="booking-form-row">
-                        <label class="booking-form-label">Alamat Pentas</label>
-                        <span class="booking-form-colon">:</span>
-                        <textarea class="form-control booking-form-textarea" name="alamat_pentas" rows="4" required>{{ old('alamat_pentas', auth()->user()->alamat) }}</textarea>
-                    </div>
+                <div class="booking-form-row">
+                    <label class="booking-form-label">Alamat Pentas</label>
+                    <span class="booking-form-colon">:</span>
+                    <textarea class="form-control booking-form-textarea" name="alamat_pentas" rows="4"
+                        required>{{ old('alamat_pentas', auth()->user()->alamat) }}</textarea>
+                </div>
 
-                    <div class="booking-form-row">
-                        <label class="booking-form-label">No. Telp</label>
-                        <span class="booking-form-colon">:</span>
-                        <input type="tel" class="form-control booking-form-input" name="no_telp"
-                            value="{{ old('no_telp', auth()->user()->no_telp) }}" required>
-                    </div>
+                <div class="booking-form-row">
+                    <label class="booking-form-label">No. Telp</label>
+                    <span class="booking-form-colon">:</span>
+                    <input type="tel" class="form-control booking-form-input" name="no_telp"
+                        value="{{ old('no_telp', auth()->user()->no_telp) }}" required>
+                </div>
 
-                    <div class="booking-form-row">
-                        <label class="booking-form-label">Tanggal Tampil</label>
-                        <span class="booking-form-colon">:</span>
-                        <div class="flex-grow-1" style="max-width:360px">
+                <div class="booking-form-row">
+                    <label class="booking-form-label">Tanggal & Waktu Tampil</label>
+                    <span class="booking-form-colon">:</span>
+                    <div class="flex-grow-1 d-flex gap-2" style="max-width:360px">
+                        <div class="flex-grow-1">
                             <input type="date"
                                 class="form-control booking-form-input booking-form-date {{ $errors->has('tanggal_tampil') ? 'is-invalid' : '' }}"
                                 name="tanggal_tampil" value="{{ old('tanggal_tampil') }}" required>
                             @error('tanggal_tampil')
-                                <div class="invalid-feedback d-block mt-1" style="color:#ff6b6b;font-size:0.875rem">
-                                    {{ $message }}
-                                </div>
+                            <div class="invalid-feedback d-block mt-1" style="color:#ff6b6b;font-size:0.875rem">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div style="min-width:130px">
+                            <input type="time"
+                                class="form-control booking-form-input {{ $errors->has('waktu_tampil') ? 'is-invalid' : '' }}"
+                                name="waktu_tampil" value="{{ old('waktu_tampil') }}" required>
+                            @error('waktu_tampil')
+                            <div class="invalid-feedback d-block mt-1" style="color:#ff6b6b;font-size:0.875rem">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                     </div>
+                </div>
 
-                    <div class="booking-form-row">
-                        <label class="booking-form-label">Catatan</label>
-                        <span class="booking-form-colon">:</span>
-                        <textarea class="form-control booking-form-textarea" name="catatan" rows="4">{{ old('catatan') }}</textarea>
-                    </div>
+                <div class="booking-form-row">
+                    <label class="booking-form-label">Catatan</label>
+                    <span class="booking-form-colon">:</span>
+                    <textarea class="form-control booking-form-textarea" name="catatan"
+                        rows="4">{{ old('catatan') }}</textarea>
+                </div>
 
-                    <div class="booking-form-row">
-                        <label class="booking-form-label">Pilih Jumlah Penari</label>
-                        <span class="booking-form-colon">:</span>
-                        <select class="form-select booking-form-select" name="jumlah_penari" id="jumlahPenari" required>
-                            <option value="1" {{ old('jumlah_penari', 1) == 1 ? 'selected' : '' }}>1 Penari</option>
-                            <option value="2" {{ old('jumlah_penari') == 2 ? 'selected' : '' }}>2 Penari</option>
-                            <option value="3" {{ old('jumlah_penari') == 3 ? 'selected' : '' }}>3 Penari</option>
-                            <option value="4" {{ old('jumlah_penari') == 4 ? 'selected' : '' }}>4 Penari</option>
-                            <option value="5" {{ old('jumlah_penari') == 5 ? 'selected' : '' }}>5 Penari</option>
-                            <option value="6" {{ old('jumlah_penari') == 6 ? 'selected' : '' }}>6 Penari</option>
-                            <option value="7" {{ old('jumlah_penari') == 7 ? 'selected' : '' }}>7 Penari</option>
-                            <option value="8" {{ old('jumlah_penari') == 8 ? 'selected' : '' }}>8 Penari</option>
-                        </select>
-                    </div>
+                <div class="booking-form-row">
+                    <label class="booking-form-label">Pilih Jumlah Penari</label>
+                    <span class="booking-form-colon">:</span>
+                    <select class="form-select booking-form-select" name="jumlah_penari" id="jumlahPenari" required>
+                        <option value="1" {{ old('jumlah_penari', 1)==1 ? 'selected' : '' }}>1 Penari</option>
+                        <option value="2" {{ old('jumlah_penari')==2 ? 'selected' : '' }}>2 Penari</option>
+                        <option value="3" {{ old('jumlah_penari')==3 ? 'selected' : '' }}>3 Penari</option>
+                        <option value="4" {{ old('jumlah_penari')==4 ? 'selected' : '' }}>4 Penari</option>
+                        <option value="5" {{ old('jumlah_penari')==5 ? 'selected' : '' }}>5 Penari</option>
+                        <option value="6" {{ old('jumlah_penari')==6 ? 'selected' : '' }}>6 Penari</option>
+                        <option value="7" {{ old('jumlah_penari')==7 ? 'selected' : '' }}>7 Penari</option>
+                        <option value="8" {{ old('jumlah_penari')==8 ? 'selected' : '' }}>8 Penari</option>
+                    </select>
+                </div>
 
-                    <div class="booking-form-row">
-                        <label class="booking-form-label">TOTAL</label>
-                        <span class="booking-form-colon">:</span>
-                        <input type="text" class="form-control booking-form-input booking-form-total" id="totalHarga"
-                            value="Rp {{ number_format($selectedTari?->harga ?? 0, 2, ',', '.') }}" readonly>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="booking-submit-wrapper">
-                <button type="submit" class="btn btn-warning" form="bookingForm">Pesan Sekarang</button>
-            </div>
+                <div class="booking-form-row">
+                    <label class="booking-form-label">TOTAL</label>
+                    <span class="booking-form-colon">:</span>
+                    <input type="text" class="form-control booking-form-input booking-form-total" id="totalHarga"
+                        value="Rp {{ number_format($selectedTari?->harga ?? 0, 2, ',', '.') }}" readonly>
+                </div>
+            </form>
         </div>
-    </section>
+
+        <!-- Submit Button -->
+        <div class="booking-submit-wrapper">
+            <button type="submit" class="btn btn-warning" form="bookingForm">Pesan Sekarang</button>
+        </div>
+    </div>
+</section>
 @endsection
 
 @push('scripts')
-    <script>
-        document.getElementById('jumlahPenari').addEventListener('change', function() {
+<script>
+    document.getElementById('jumlahPenari').addEventListener('change', function() {
             const hargaPerPenari = {{ (int) ($selectedTari?->harga ?? 0) }};
             const jumlah = parseInt(this.value) || 1;
             const total = hargaPerPenari * jumlah;
             document.getElementById('totalHarga').value = 'Rp ' + total.toLocaleString('id-ID') + ',00';
         });
-    </script>
+</script>
 @endpush

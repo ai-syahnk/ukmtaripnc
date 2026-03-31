@@ -2,7 +2,7 @@
 
 return [
     'bank_name' => env('PAYMENT_BANK_NAME', 'BCA'),
-    'account_number' => env('PAYMENT_ACCOUNT_NUMBER', '1234567890'),
+    'account_number' => env('PAYMENT_ACCOUNT_NUMBER', '302 728 6777'),
     'account_holder' => env('PAYMENT_ACCOUNT_HOLDER', 'UKM Seni Tari Prabhakala PNC'),
     'payment_deadline_hours' => env('PAYMENT_DEADLINE_HOURS', 24),
 ];

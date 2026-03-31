@@ -182,8 +182,23 @@
             <span class="fw-bold fs-5">Rp {{ number_format((float) $booking->total_harga, 0, ',', '.') }}</span>
         </div>
 
-        <div class="text-muted text-center" style="font-size:12px">
-            Tanggal Tampil: {{ $booking->tanggal_tampil?->format('d/m/Y') ?? '-' }}
+        <div class="d-flex justify-content-center gap-4 mb-4">
+            <div class="text-center px-4 py-3"
+                style="background: linear-gradient(135deg, #fff8e1, #fff3cd); border-radius: 10px; border: 1px solid #ffc107; min-width: 180px;">
+                <div
+                    style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #997a00; font-weight: 600; margin-bottom: 4px;">
+                    Tanggal Tampil</div>
+                <div style="font-size: 20px; font-weight: 700; color: #333;">{{
+                    $booking->tanggal_tampil?->format('d/m/Y') ?? '-' }}</div>
+            </div>
+            <div class="text-center px-4 py-3"
+                style="background: linear-gradient(135deg, #e8f5e9, #d4edda); border-radius: 10px; border: 1px solid #28a745; min-width: 180px;">
+                <div
+                    style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #1b5e20; font-weight: 600; margin-bottom: 4px;">
+                    Waktu Tampil</div>
+                <div style="font-size: 20px; font-weight: 700; color: #333;">{{ $booking->waktu_tampil ?
+                    \Carbon\Carbon::parse($booking->waktu_tampil)->format('H:i') : '-' }} WIB</div>
+            </div>
         </div>
 
         {{-- Print Button --}}

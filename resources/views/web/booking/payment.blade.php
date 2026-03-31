@@ -23,6 +23,10 @@
                             <td>: {{ $booking->tanggal_tampil?->format('d/m/Y') }}</td>
                         </tr>
                         <tr>
+                            <td class="text-muted">Waktu Tampil</td>
+                            <td>: {{ $booking->waktu_tampil ? \Carbon\Carbon::parse($booking->waktu_tampil)->format('H:i') : '' }} WIB</td>
+                        </tr>
+                        <tr>
                             <td class="text-muted">Jumlah Penari</td>
                             <td>: {{ $booking->jumlah_penari }} Penari</td>
                         </tr>

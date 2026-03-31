@@ -27,16 +27,15 @@ class BookingController extends Controller
         ]);
 
         if ($validated['status'] === 'approved') {
-            $bentrok = Booking::where('tari_id', $booking->tari_id)
-                ->where('tanggal_tampil', $booking->tanggal_tampil)
-                ->where('status', 'approved')
+            $bentrok = Booking::where('tanggal_tampil', $booking->tanggal_tampil)
+                ->whereIn('status', ['approved', 'waiting_confirmation', 'paid'])
                 ->where('id', '!=', $booking->id)
                 ->exists();
 
             if ($bentrok) {
                 return redirect()
                     ->route('admin.booking.index')
-                    ->with('toast_error', 'Gagal: Tari ini sudah ada booking approved pada tanggal ' . $booking->tanggal_tampil->format('d/m/Y') . '.');
+                    ->with('toast_error', 'Gagal: Sudah ada booking approved pada tanggal '.$booking->tanggal_tampil->format('d/m/Y').'. Hanya 1 booking per hari.');
             }
         }
 
@@ -102,19 +101,19 @@ class BookingController extends Controller
             'alamat_pentas' => ['required', 'string'],
             'no_telp' => ['required', 'string', 'max:30'],
             'tanggal_tampil' => ['required', 'date', 'after_or_equal:today'],
+            'waktu_tampil' => ['required', 'date_format:H:i'],
             'catatan' => ['nullable', 'string'],
             'jumlah_penari' => ['required', 'integer', 'min:1', 'max:5'],
         ]);
 
-        $bentrok = Booking::where('tari_id', $validated['tari_id'])
-            ->where('tanggal_tampil', $validated['tanggal_tampil'])
-            ->whereIn('status', ['pending', 'approved'])
+        $bentrok = Booking::where('tanggal_tampil', $validated['tanggal_tampil'])
+            ->whereIn('status', ['pending', 'approved', 'waiting_confirmation', 'paid'])
             ->exists();
 
         if ($bentrok) {
             return back()
                 ->withInput()
-                ->withErrors(['tanggal_tampil' => 'Tari ini sudah dipesan pada tanggal tersebut. Silakan pilih tanggal lain.']);
+                ->withErrors(['tanggal_tampil' => 'Sudah ada booking pada tanggal tersebut. Hanya 1 booking per hari. Silakan pilih tanggal lain.']);
         }
 
         $tari = Tari::findOrFail($validated['tari_id']);
@@ -128,6 +127,7 @@ class BookingController extends Controller
             'alamat_pentas' => $validated['alamat_pentas'],
             'no_telp' => $validated['no_telp'],
             'tanggal_tampil' => $validated['tanggal_tampil'],
+            'waktu_tampil' => $validated['waktu_tampil'],
             'catatan' => $validated['catatan'] ?? null,
             'jumlah_penari' => $validated['jumlah_penari'],
             'harga_per_penari' => $hargaPerPenari,

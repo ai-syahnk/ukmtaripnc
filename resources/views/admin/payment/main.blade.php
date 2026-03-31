@@ -18,6 +18,7 @@
                                 <th>Tanggal Upload</th>
                                 <th>Pemesan</th>
                                 <th>Tari</th>
+                                <th>Tgl. & Waktu Tampil</th>
                                 <th>Total Booking</th>
                                 <th>Jumlah Transfer</th>
                                 <th>Bank</th>
@@ -44,9 +45,13 @@
                                 <td>{{ $payment->created_at?->format('d/m/Y H:i') ?? '-' }}</td>
                                 <td>
                                     <div class="fw-semibold">{{ $payment->booking?->nama_pemesan ?? '-' }}</div>
-                                    <small class="text-muted">{{ $payment->nama_pengirim }}</small>
+                                    <small class="text-muted">Pengirim: {{ $payment->nama_pengirim }}</small>
                                 </td>
-                                <td>{{ $payment->booking?->tari?->nama ?? '-' }}</td>
+                                <td>{{ $payment->booking?->tari?->nama ?? '-' }} ({{ $payment->booking?->jumlah_penari
+                                    ?? 0 }} Penari)</td>
+                                <td>{{ $payment->booking?->tanggal_tampil?->format('d/m/Y') ?? '-' }} {{
+                                    $payment->booking?->waktu_tampil ?
+                                    \Carbon\Carbon::parse($payment->booking->waktu_tampil)->format('H:i') : '' }}</td>
                                 <td>Rp {{ number_format((float) ($payment->booking?->total_harga ?? 0), 0, ',', '.') }}
                                 </td>
                                 <td>Rp {{ number_format((float) $payment->jumlah_transfer, 0, ',', '.') }}</td>

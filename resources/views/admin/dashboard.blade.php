@@ -78,8 +78,8 @@
                     <tr>
                         <th>No.</th>
                         <th>Tanggal</th>
+                        <th>Waktu</th>
                         <th class="ps-4">Nama Pentas</th>
-                        {{-- <th>Waktu</th> --}}
                         <th>Nama Pemesan</th>
                         <th>Nomor Telepon</th>
                         <th>Lokasi</th>
@@ -91,9 +91,10 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ optional($jadwal->tanggal_tampil)->format('d-m-Y') ?? '-' }}</td>
+                        <td>{{ $jadwal->waktu_tampil ? \Carbon\Carbon::parse($jadwal->waktu_tampil)->format('H:i') : '-'
+                            }}</td>
                         <td class="ps-4">{{ $jadwal->tari->nama ?? '-' }} ({{ $jadwal->jumlah_penari ?? '-' }} Penari)
                         </td>
-                        {{-- <td>-</td> --}}
                         <td>{{ $jadwal->nama_pemesan ?? '-' }}</td>
                         <td>{{ $jadwal->no_telp ?? '-' }}</td>
                         <td>{{ $jadwal->alamat_pentas }}</td>
