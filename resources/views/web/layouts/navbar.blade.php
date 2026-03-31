@@ -44,8 +44,9 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
+                            @else
+                                <li><a class="dropdown-item" href="{{ route('booking.history') }}">Riwayat Booking</a></li>
                             @endif
-                            <li><a class="dropdown-item" href="{{ route('booking.history') }}">Riwayat Booking</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

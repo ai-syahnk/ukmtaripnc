@@ -83,7 +83,7 @@
                         <th>Nama Pemesan</th>
                         <th>Nomor Telepon</th>
                         <th>Lokasi</th>
-                        <th class="pe-4 text-end">Status</th>
+                        {{-- <th class="pe-4 text-end">Status</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -97,7 +97,7 @@
                         <td>{{ $jadwal->nama_pemesan ?? '-' }}</td>
                         <td>{{ $jadwal->no_telp ?? '-' }}</td>
                         <td>{{ $jadwal->alamat_pentas }}</td>
-                        <td class="pe-4 text-end">
+                        {{-- <td class="pe-4 text-end">
                             @if ($jadwal->status === 'paid')
                             <span class="badge bg-success">Lunas</span>
                             @elseif ($jadwal->status === 'approved')
@@ -111,7 +111,7 @@
                             @else
                             <span class="badge bg-secondary">{{ ucfirst($jadwal->status) }}</span>
                             @endif
-                        </td>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

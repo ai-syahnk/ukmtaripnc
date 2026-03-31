@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $approvedOrderTotal = Booking::where('status', 'paid')->sum('total_harga');
         $pendingPaymentCount = Payment::where('status', 'pending')->count();
         $jadwalPentas = Booking::with('tari')
-            ->whereIn('status', ['approved', 'waiting_confirmation', 'paid'])
+            ->whereIn('status', ['paid'])
             ->orderBy('tanggal_tampil')
             ->latest('id')
             ->get();

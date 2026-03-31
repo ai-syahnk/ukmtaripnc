@@ -78,6 +78,9 @@
                             <option value="3" {{ old('jumlah_penari') == 3 ? 'selected' : '' }}>3 Penari</option>
                             <option value="4" {{ old('jumlah_penari') == 4 ? 'selected' : '' }}>4 Penari</option>
                             <option value="5" {{ old('jumlah_penari') == 5 ? 'selected' : '' }}>5 Penari</option>
+                            <option value="6" {{ old('jumlah_penari') == 6 ? 'selected' : '' }}>6 Penari</option>
+                            <option value="7" {{ old('jumlah_penari') == 7 ? 'selected' : '' }}>7 Penari</option>
+                            <option value="8" {{ old('jumlah_penari') == 8 ? 'selected' : '' }}>8 Penari</option>
                         </select>
                     </div>
 

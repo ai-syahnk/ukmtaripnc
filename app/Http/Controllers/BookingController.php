@@ -58,7 +58,7 @@ class BookingController extends Controller
     public function informasiBooking(): View
     {
         $approvedBookings = Booking::with('tari')
-            ->whereIn('status', ['approved', 'waiting_confirmation', 'paid'])
+            // ->whereIn('status', ['approved', 'waiting_confirmation', 'paid'])
             ->orderBy('tanggal_tampil')
             ->latest('id')
             ->paginate(10);

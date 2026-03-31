@@ -188,7 +188,7 @@
 
         {{-- Print Button --}}
         <div class="text-center mt-4 no-print d-flex justify-content-center gap-2">
-            <a href="{{ route('booking.history') }}" class="btn btn-secondary">Kembali</a>
+            <a href="{{ route('admin.booking.index') }}" class="btn btn-secondary">Kembali</a>
             <button onclick="window.print()" class="btn btn-warning">
                 <i class="fas fa-print me-1"></i> Cetak Invoice
             </button>
