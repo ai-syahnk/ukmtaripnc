@@ -52,6 +52,8 @@
                                     <span class="badge text-bg-warning text-uppercase">{{ $booking->status }}</span>
                                     @elseif ($booking->status === 'rejected')
                                     <span class="badge text-bg-danger text-uppercase">{{ $booking->status }}</span>
+                                    @elseif ($booking->status === 'expired')
+                                    <span class="badge text-bg-dark text-uppercase">{{ $booking->status }}</span>
                                     @endif
                                 </td>
                             </tr>
